@@ -26,4 +26,22 @@ module.exports = defineConfig({
       }),
     ],
   },
+  pluginOptions: {
+    "style-resources-loader": {
+      preProcessor: "less",
+      patterns: [],
+    },
+  },
+  css: {
+    loaderOptions: {
+      less: {
+        lessOptions: {
+          modifyVars: {
+            "primary-color": "#ec6800",
+          },
+          javascriptEnabled: true,
+        },
+      },
+    },
+  },
 });

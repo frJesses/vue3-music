@@ -1,28 +1,16 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
-  <el-row class="mb-4">
-    <el-button>Default</el-button>
-    <el-button type="primary">Primary</el-button>
-    <el-button type="success">Success</el-button>
-    <el-button type="info">Info</el-button>
-    <el-button type="warning">Warning</el-button>
-    <el-button type="danger">Danger</el-button>
-  </el-row>
+  <img alt="Vue logo" src="./assets/logo.png" class="img" />
+  <HelloWorld />
 </template>
 
-<script>
-import HelloWorld from "./components/HelloWorld.vue";
-
-export default {
-  name: "App",
-  components: {
-    HelloWorld,
-  },
-};
+<script setup>
+import HelloWorld from "@/components/HelloWorld";
+import useStore from "./store";
+const { home } = useStore();
+console.log(home.counter, "store");
 </script>
 
-<style>
+<style lang="less">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -30,5 +18,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  .img {
+    width: 200px;
+    height: 300px;
+  }
 }
 </style>
