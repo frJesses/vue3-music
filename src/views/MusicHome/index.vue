@@ -118,12 +118,12 @@
 <script>
 // import { Search } from '@element-plus/icons-vue'
 export default {
-  data: function () {
+  data: function() {
     return {
-      keywords: "",
-    };
-  },
-};
+      keywords: ''
+    }
+  }
+}
 </script>
 
 <style lang="less">

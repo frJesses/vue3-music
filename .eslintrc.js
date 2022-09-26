@@ -12,14 +12,6 @@ module.exports = {
     parser: '@babel/eslint-parser'
   },
   rules: {
-<<<<<<< HEAD
-    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "linebreak-style": "off",
-    "vue/multi-word-component-names": "off",
-  },
-};
-=======
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'vue/multi-word-component-names': 'off',
@@ -374,4 +366,3 @@ module.exports = {
     'array-bracket-spacing': [2, 'never']
   }
 }
->>>>>>> dev

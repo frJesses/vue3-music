@@ -1,13 +1,22 @@
 <template>
-<<<<<<< HEAD
+  <img alt="Vue logo" src="./assets/logo.png" class="img" />
+  <SeactionHeader>
+    <template #left>
+      <div>left</div>
+    </template>
+    <template #right>
+      <div>right</div>
+    </template>
+  </SeactionHeader>
   <router-view></router-view>
 </template>
 
 <script setup>
-import useStore from "./store";
-const { home } = useStore();
-console.log(home.counter, "store");
-document.title = "网易云音乐";
+import SeactionHeader from '@/components/SectionHeader'
+import useStore from './store'
+const { home } = useStore()
+console.log(home.counter, 'store')
+document.title = '网易云音乐'
 </script>
 
 <style lang="less">
@@ -24,21 +33,4 @@ ul {
   list-style: none;
 }
 </style>
-=======
-  <img alt="Vue logo" src="./assets/logo.png" class="img" />
-  <SeactionHeader>
-    <template #left>
-      <div>left</div>
-    </template>
-    <template #right>
-      <div>right</div>
-    </template>
-  </SeactionHeader>
-</template>
 
-<script setup>
-import SeactionHeader from '@/components/SectionHeader'
-</script>
-
-<style lang="less"></style>
->>>>>>> dev

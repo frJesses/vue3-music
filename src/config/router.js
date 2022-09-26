@@ -1,24 +1,24 @@
-const Home = () => import("@/views/MusicHome/index");
-const NotFound = () => import("@/views/NotFound/index");
+const Home = () => import('@/views/MusicHome/index')
+const NotFound = () => import('@/views/NotFound/index')
 
 const routes = [
   {
-    path: "/",
-    redirect: "/discover",
+    path: '/',
+    redirect: '/discover'
   },
   {
-    path: "/discover",
+    path: '/discover',
     component: Home,
-    name: "home",
+    name: 'home'
   },
   {
-    path: "/404",
-    name: "404",
-    component: NotFound,
+    path: '/404',
+    name: '404',
+    component: NotFound
   },
   {
-    path: "/:catchAll(.*)",
-    redirect: "/404",
-  },
-];
-export default routes;
+    path: '/:catchAll(.*)',
+    redirect: '/404'
+  }
+]
+export default routes

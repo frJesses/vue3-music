@@ -1,6 +1,6 @@
-import homeStore from "./home";
+import homeStore from './home'
 export default function useStore() {
   return {
-    home: homeStore(),
-  };
+    home: homeStore()
+  }
 }
