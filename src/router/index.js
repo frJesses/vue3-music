@@ -1,10 +1,9 @@
-import { createRouter, createWebHistory } from "vue-router";
-
-const routes = [{}];
-
+import { createRouter, createWebHashHistory } from "vue-router";
+import routes from "@/config/router.js";
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
+  linkActiveClass: "active",
 });
 
 export default router;

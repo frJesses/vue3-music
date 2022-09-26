@@ -1,26 +1,25 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" class="img" />
-  <HelloWorld />
+  <router-view></router-view>
 </template>
 
 <script setup>
-import HelloWorld from "@/components/HelloWorld";
 import useStore from "./store";
 const { home } = useStore();
 console.log(home.counter, "store");
+document.title = "网易云音乐";
 </script>
 
 <style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-  .img {
-    width: 200px;
-    height: 300px;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+ul {
+  list-style: none;
 }
 </style>
