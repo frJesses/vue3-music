@@ -9,16 +9,18 @@ const routes = [
   {
     path: '/discover',
     component: Home,
-    name: 'home'
-  },
-  {
-    path: '/404',
-    name: '404',
-    component: NotFound
+    name: 'home',
+    children: [
+      {
+        path: 'playlist',
+        name: 'playlist',
+        component: () => import('@/views/PlayList')
+      }
+    ]
   },
   {
     path: '/:catchAll(.*)',
-    redirect: '/404'
+    component: NotFound
   }
 ]
 export default routes
