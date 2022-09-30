@@ -1,7 +1,8 @@
 module.exports = {
   root: true,
   env: {
-    node: true
+    node: true,
+    'vue/setup-compiler-macros': true
   },
   extends: [
     'plugin:vue/vue3-essential',
@@ -60,7 +61,7 @@ module.exports = {
     // 文件以换行符结束
     'eol-last': 2,
     // 必须使用全等，除非与 null 进行比较
-    eqeqeq: ['error', 'always', { null: 'ignore' }],
+    eqeqeq: ['off', 'always', { null: 'ignore' }],
     // 生成器函数*的前后空格
     'generator-star-spacing': [
       2,

@@ -10,13 +10,11 @@
 </template>
 
 <script setup>
-const name = '123'
-console.log(name)
 </script>
 
 <style lang="less" scoped>
   .section-header {
-    height: 40px;
+    height: 42px;
     display: flex;
     justify-content: space-between;
     border-bottom: 2px solid #c20c0c;

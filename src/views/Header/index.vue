@@ -2,21 +2,11 @@
   <el-header class="header">
     <div class="nav">
       <router-link to="/" class="logo"></router-link>
-      <router-link
-        v-for="(item, index) in navList"
-        :key="item.url"
-        :to="item.url"
-        @click="navChange(index)"
-        :class="{'nav-active': currentIndex == index}"
-      >{{item.title}}</router-link>
+      <router-link v-for="(item, index) in navList" :key="item.url" :to="item.url" @click="navChange(index)"
+        :class="{'nav-active': currentIndex == index}">{{item.title}}</router-link>
     </div>
     <div class="info">
-      <el-input
-        v-model="keywords"
-        class="w-50 m-2 search"
-        size="default"
-        placeholder="音乐/视频/电台/用户"
-      />
+      <el-input v-model="keywords" class="w-50 m-2 search" size="default" placeholder="音乐/视频/电台/用户" />
       <a href="#" class="crt_center">创作者中心</a>
       <a href="#" class="crt_center">登录</a>
     </div>
@@ -45,14 +35,17 @@ const { currentIndex, navChange } = useNavClick()
 
 <style lang="less" scoped>
 @img: "https://s2.music.126.net/style/web2/img/frame/topbar.png?cdfc587f0ca0e40bb6a09f700cb968b2";
+
 .header {
   background: #242424;
   height: 70px;
   display: flex;
   justify-content: center;
+
   .nav {
     display: flex;
     flex-shrink: 0;
+
     .logo {
       width: 177px;
       background-image: url("@{img}");
@@ -63,9 +56,11 @@ const { currentIndex, navChange } = useNavClick()
       background: #000;
       color: #ffffff;
     }
+
     .active {
       position: relative;
     }
+
     .active::after {
       content: "";
       position: absolute;
@@ -76,21 +71,25 @@ const { currentIndex, navChange } = useNavClick()
       border-bottom-color: #c20c0c;
     }
   }
+
   .info {
     margin-left: 85px;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+
     .el-input {
       width: 158px;
       height: 32px;
       overflow: hidden;
       border-radius: 32px !important;
+
       .el-input__inner::placeholder {
         font-size: 14px;
       }
     }
+
     .crt_center {
       margin-left: 10px;
       font-size: 12px;
@@ -98,12 +97,14 @@ const { currentIndex, navChange } = useNavClick()
       padding: 0 15px;
       border-radius: 30px;
       border: 1px solid #4f4f4f;
+
       &:hover {
         background-color: inherit;
         border-color: #ffffff;
       }
     }
   }
+
   a {
     color: #ccc;
     font-size: 14px;
