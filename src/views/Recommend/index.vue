@@ -2,7 +2,7 @@
   <div>
     <Banner/>
     <RecmModule >
-      <MusicCard :list="PersonList"></MusicCard>
+      <MusicItem :list="PersonList" :total="5"></MusicItem>
     </RecmModule>
   </div>
 </template>
@@ -10,14 +10,15 @@
 <script setup>
 import Banner from './components/Banner'
 import RecmModule from './components/RecmModule'
-import MusicCard from '@/components/MusicCard'
+import MusicItem from '@/components/MusicItem'
 import { getPersonalized } from '@/servies/Personalized'
 import { onMounted, ref } from '@vue/runtime-core'
 const PersonList = ref(null)
 onMounted(async() => {
   const res = (await getPersonalized()).result
-  PersonList.value = ref(res)
-  console.log(PersonList.value)
+  console.log(res, 'res')
+  PersonList.value = res
+  console.log(Array.isArray(PersonList))
 })
 </script>
 

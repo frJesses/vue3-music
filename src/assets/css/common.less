@@ -1,0 +1,15 @@
+// 超出省略号显示
+.text-ellipies(@line) {
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: @line; 
+  overflow: hidden;
+}
+
+// hover状态下显示下划线
+.hover-underline {
+  &:hover {
+    text-decoration: underline;
+  }
+}

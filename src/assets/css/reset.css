@@ -18,7 +18,18 @@ ul {
   margin: 0 auto;
 }
 .recm-wrapper {
+  border: 1px solid #d3d3d3;
   width: 980px;
   padding: 20px;
   margin: 0 auto;
+}
+.playlist-popper {
+  transform: translate(475px, 194px) !important;
+  padding: 0 !important;
+}
+.playlist-popper .el-popper__arrow {
+  transform: translate(124px, 0px) !important;
+}
+.playlist-popper .el-popper.is-light .el-popper__arrow::before {
+  right: -78px;
 }

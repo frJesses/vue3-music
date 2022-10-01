@@ -19,6 +19,18 @@ const app = createApp(App)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
+
+// 注册全局过滤器
+app.config.globalProperties.$filters = {
+  formatPlayCount(value) {
+    if (String(value).length < 6) {
+      return value
+    } else {
+      return parseInt(value / 10000) + '万'
+    }
+  }
+}
+
 app.use(router)
 app.use(createPinia())
 app.use(ElementPlus)

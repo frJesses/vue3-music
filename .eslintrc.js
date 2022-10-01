@@ -54,7 +54,7 @@ module.exports = {
     // 逗号风格，换行时在行首还是行尾
     'comma-style': [2, 'last'],
     // 非派生类不能调用super，派生类必须调用super
-    'constructor-super': 2,
+    'constructor-super': 'off',
     curly: [2, 'multi-line'],
     // 对象访问符的位置，换行的时候在行首还是行尾
     'dot-location': [2, 'property'],
