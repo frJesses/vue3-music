@@ -1,31 +1,54 @@
 <template>
   <div class="music-list">
-    <div class="item">
+    <div class="item" v-for="item in list" :key="item.id">
       <div class="cover">
-        <img src="https://p2.music.126.net/4hCpqWeNupK-7KbawyB-3w==/109951167330131366.jpg?param=140y140" alt="">
+        <div class="bg"></div>
+        <img :src="item.coverImgUrl" alt="">
+        <div class="mask">
+          <el-icon class="listen">
+            <Service />
+          </el-icon>
+          <span class="count">{{$filters.formatPlayCount(item.playCount)}}</span>
+          <el-icon class="play">
+            <VideoPlay />
+          </el-icon>
+        </div>
       </div>
       <div class="info">
-        <div class="title">12345</div>
-        <div class="author">4555</div>
+        <slot :item="item">
+          <div class="title">{{item.name}}</div>
+        </slot>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-const props = defineProps({
-  list: Array, // 数据列表
-  total: Number // 每行展示条数
+defineProps({
+  list: { // 数据列表
+    type: Array,
+    default: () => []
+  },
+  total: { // 每行展示多少条数据
+    type: Number,
+    default: 4
+  },
+  visible: { // mask是否展示
+    type: Boolean,
+    default: true
+  }
 })
-console.log(props)
 </script>
 
 <style lang="less" scoped>
+@import "@/assets/css/common.less";
+
 .music-list {
   display: flex;
   justify-content: space-between;
   margin-left: -30px;
   margin-top: 20px;
+  flex-wrap: wrap;
 
   .item {
     width: calc(100% / v-bind(total));
@@ -34,16 +57,63 @@ console.log(props)
     .cover {
       position: relative;
       overflow: hidden;
-      width: 140px;
-      height: 140px;
+      cursor: pointer;
 
       img {
         display: block;
         object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+
+      .mask {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, .4);
+        color: #fff;
+        font-size: 12px;
+        height: 27px;
+        padding: 0 10px;
+
+        .count {
+          flex: 1;
+          margin-left: 6px;
+        }
+
+        .play {
+          font-size: 18px;
+          color: #bbb;
+
+          &:hover {
+            color: #fff;
+          }
+        }
+        .listen {
+          font-size: 14px;
+        }
+      }
+
+      .bg {
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        background: rgba(255, 255, 255, .3);
+        transform: rotate(43deg);
+        transform: translate(-155px, -220px) rotate(45deg);
       }
     }
 
-    .info {}
+    .info {
+      .title {
+        .text-ellipies(1);
+        margin-top: 10px;
+        cursor: pointer;
+      }
+    }
   }
 }
 </style>

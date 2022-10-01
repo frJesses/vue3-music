@@ -19,3 +19,15 @@ ul {
   border-width: 0 1px;
   margin: 0 auto;
 }
+
+// 修改popper样式
+.playlist-popper {
+  transform: translate(475px, 194px) !important;
+  padding: 0 !important;
+  .el-popper__arrow {
+    transform: translate(124px, 0px) !important;
+  }
+  .el-popper.is-light .el-popper__arrow::before {
+    right: -78px;
+  }
+}
