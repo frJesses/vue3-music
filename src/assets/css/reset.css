@@ -10,8 +10,6 @@ a {
 ul {
   list-style: none;
 }
-
-// 页面基本框架
 .wrapper {
   width: 980px;
   padding: 40px;
@@ -19,8 +17,7 @@ ul {
   border-width: 0 1px;
   margin: 0 auto;
 }
-// 推荐页模块容器
-.recm-wrapper{
+.recm-wrapper {
   width: 980px;
   padding: 20px;
   margin: 0 auto;

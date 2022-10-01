@@ -12,6 +12,15 @@ const routes = [
     name: 'home',
     children: [
       {
+        path: '',
+        redirect: '/discover/recommend'
+      },
+      {
+        path: 'recommend',
+        name: 'recommend',
+        component: () => import('@/views/Recommend')
+      },
+      {
         path: 'playlist',
         name: 'playlist',
         component: () => import('@/views/PlayList')
