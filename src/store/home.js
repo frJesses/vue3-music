@@ -1,10 +1,10 @@
-import { defineStore } from "pinia";
-export default defineStore("home", {
+import { defineStore } from 'pinia'
+export default defineStore('home', {
   state: () => {
     return {
-      counter: 0,
-    };
+      counter: 0
+    }
   },
   getters: {},
-  actions: {},
-});
+  actions: {}
+})

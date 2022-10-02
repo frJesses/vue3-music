@@ -1,26 +1,15 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" class="img" />
-  <HelloWorld />
+  <Header></Header>
+  <router-view></router-view>
+  <Footer></Footer>
 </template>
 
 <script setup>
-import HelloWorld from "@/components/HelloWorld";
-import useStore from "./store";
-const { home } = useStore();
-console.log(home.counter, "store");
+import Footer from '@/views/Footer'
+import Header from '@/views/Header'
 </script>
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-  .img {
-    width: 200px;
-    height: 300px;
-  }
-}
+<style lang="less" scoped>
+
 </style>
+
