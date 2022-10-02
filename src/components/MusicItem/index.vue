@@ -1,5 +1,5 @@
 <template>
-  <div class="music-list">
+  <div class="music-list" v-if="list?.length">
     <div class="item" v-for="item in list" :key="item">
       <div class="cover">
         <div class="bg"></div>

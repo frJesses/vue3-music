@@ -23,14 +23,12 @@ onMounted(async() => {
   changeBg(0)
 })
 function changeBg(val) {
+  console.log(val, 'val')
   const img = BannerList.value[val].imageUrl
-  const bgcolor = bg.value
-  bgcolor.style = `
+  bg.value.style = `
   background-image: url("${img}?imageView&blur=40x20"); background-size: 6000px; background-position: center center;
+  transition: background-image ease .3s;
   `
-  // bgcolor.style.background = `url(\"${img}?imageView&blur=40x20\")`
-  // bgcolor.style.backgroundSize = '6000px'
-  // bgcolor.style.backgroundPosition = 'center center'
 }
 </script>
 

@@ -16,9 +16,7 @@ import { onMounted, ref } from '@vue/runtime-core'
 const PersonList = ref(null)
 onMounted(async() => {
   const res = (await getPersonalized()).result
-  console.log(res, 'res')
   PersonList.value = res
-  console.log(Array.isArray(PersonList))
 })
 </script>
 
