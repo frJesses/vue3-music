@@ -45,7 +45,6 @@ defineProps({
 
 .music-list {
   display: flex;
-  justify-content: space-between;
   margin-left: -30px;
   margin-top: 20px;
   flex-wrap: wrap;

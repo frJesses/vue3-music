@@ -25,6 +25,11 @@ const routes = [
         path: 'playlist',
         name: 'playlist',
         component: () => import('@/views/PlayList')
+      },
+      {
+        path: 'djradio',
+        name: 'anchorStation',
+        component: () => import('@/views/AmchorStation')
       }
     ]
   },
