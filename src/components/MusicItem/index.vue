@@ -1,6 +1,6 @@
 <template>
   <div class="music-list" v-if="list?.length">
-    <div class="item" v-for="item in list" :key="item">
+    <div class="item" v-for="item in lists" :key="item">
       <div class="cover">
         <div class="bg"></div>
         <img :src="item.coverImgUrl || item.picUrl" alt="">
@@ -24,7 +24,9 @@
 </template>
 
 <script setup>
-defineProps({
+const { onMounted, watch, ref } = require('@vue/runtime-core')
+
+const props = defineProps({
   list: { // 数据列表
     type: Array,
     default: () => []
@@ -36,7 +38,21 @@ defineProps({
   visible: { // mask是否展示
     type: Boolean,
     default: true
+  },
+  num: { // 显示总记录数
+    type: Number,
+    default: 30
   }
+})
+const lists = ref('')
+onMounted(() => {
+  // lists.value = props.list._rawValue
+  console.log(props.list)
+})
+watch(props, (newval, oldval) => {
+  lists.value = newval.list
+  lists.value = lists.value.slice(0, props.num)
+  console.log(lists.value)
 })
 </script>
 
