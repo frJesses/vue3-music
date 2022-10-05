@@ -4,10 +4,9 @@
       <li
         v-for="(item, index) in navList"
         :key="item.url"
-        @click="navChange(index)"
         :class="{'nav-active': currentIndex == index}"
       >
-        <router-link :to="item.url">{{ item.title }}</router-link>
+        <router-link @click="navChange(index)" :to="item.url">{{ item.title }}</router-link>
       </li>
     </ul>
   </div>
