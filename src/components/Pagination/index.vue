@@ -1,6 +1,14 @@
 <template>
-  <el-pagination background layout="prev, pager, next" :prev-text="prevText" :next-text="nextText"
-    :total="total" @current-change="currentPageChange" :hide-on-single-page="total == 0" />
+  <el-pagination
+    background
+    layout="prev, pager, next"
+    :prev-text="prevText"
+    :next-text="nextText"
+    :total="total"
+    @current-change="currentPageChange"
+    :hide-on-single-page="total == 0"
+    :page-size="pageSize"
+  />
 </template>
 
 <script setup>
@@ -20,6 +28,10 @@ defineProps({
   nextText: {
     type: String,
     default: '下一页'
+  },
+  pageSize: {
+    type: Number,
+    default: 50
   }
 })
 </script>
