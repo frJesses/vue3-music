@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <Banner/>
-    <RecmModule >
-      <MusicItem :list="PersonList" :total="5"></MusicItem>
-    </RecmModule>
-  </div>
+  <Banner />
+  <RecmModule>
+    <MusicItem :list="PersonList" :total="5"></MusicItem>
+  </RecmModule>
 </template>
 
 <script setup>

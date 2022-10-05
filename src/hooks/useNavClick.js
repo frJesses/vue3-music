@@ -1,9 +1,11 @@
 import { ref } from 'vue'
 
 const useNavClick = () => {
-  const currentIndex = ref('0')
+  const cIndex = localStorage.getItem('currentIndex')
+  const currentIndex = ref(cIndex || 0)
   const navChange = (index) => {
     currentIndex.value = index
+    localStorage.setItem('currentIndex', index)
   }
 
   return {
