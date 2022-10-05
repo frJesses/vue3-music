@@ -23,6 +23,9 @@
             more ="/discover/album"
             ></RecmNav>
           </template>
+          <template #content>
+            <NewCd></NewCd>
+          </template>
       </RecmModule>
       <div class="recm-right"></div>
     </div>
@@ -34,6 +37,7 @@ import Banner from './components/Banner'
 import RecmModule from './components/RecmModule'
 import MusicItem from '@/components/MusicItem'
 import RecmNav from './components/RecmNav.vue'
+import NewCd from './components/NewCd'
 import { getPersonalized } from '@/servies/Personalized'
 import { onMounted, ref } from '@vue/runtime-core'
 const PersonList = ref(null)
