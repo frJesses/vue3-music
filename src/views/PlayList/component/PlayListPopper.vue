@@ -1,8 +1,17 @@
 <script setup>
 import { onMounted, onUnmounted, ref } from 'vue'
 import { getPlayListTag } from '@/servies/PlayList'
+import { useRouterInfo } from '@/hooks/useRouterInfo'
+const { router, route } = useRouterInfo()
 
-const title = ref('全部')
+// 接收的props
+const props = defineProps({
+  getPlayList: {
+    type: Function,
+    default: () => { }
+  }
+})
+const title = ref(route.query.cat || '全部')
 const visible = ref(false)
 const tagList = ref(null)
 onMounted(async() => {
@@ -37,6 +46,10 @@ const pageClick = () => {
 // 点击具体标签
 const tagClick = (tagName) => {
   title.value = tagName
+  // 发送请求改变数据
+  props.getPlayList('hot', tagName)
+  // 改变路由地址
+  router.push(`/discover/playlist/?cat=${tagName}`)
 }
 
 // poppver显示触发
@@ -48,8 +61,7 @@ const poppverTrigger = () => {
 <template>
   <div class="seaction-left">
     <h3 class="title">{{title}}</h3>
-    <el-popover placement="bottom-start" :width="700" trigger="click" popper-class="playlist-popper"
-      :visible="visible">
+    <el-popover placement="bottom-start" :width="700" trigger="click" popper-class="playlist-popper" :visible="visible">
       <template #reference>
         <el-button plain @click="poppverTrigger">
           选择分类<el-icon>

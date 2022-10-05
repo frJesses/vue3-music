@@ -19,11 +19,9 @@ const bg = ref(null)
 onMounted(async() => {
   const res = await getBannerList()
   BannerList.value = res.banners
-  console.log(BannerList)
   changeBg(0)
 })
 function changeBg(val) {
-  console.log(val, 'val')
   const img = BannerList.value[val].imageUrl
   bg.value.style = `
   background-image: url("${img}?imageView&blur=40x20"); background-size: 6000px; background-position: center center;
