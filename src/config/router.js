@@ -13,7 +13,8 @@ const routes = [
     children: [
       {
         path: '',
-        redirect: '/discover/recommend'
+        redirect: '/discover/recommend',
+        name: 'homeRedirect'
       },
       {
         path: 'recommend',
