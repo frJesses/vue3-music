@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-const props = defineProps({
+defineProps({
   title: {
     type: String,
     default: '标题'
@@ -27,7 +27,6 @@ const props = defineProps({
     type: String
   }
 })
-console.log(props)
 </script>
 
 <style lang="less" scoped>

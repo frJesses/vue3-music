@@ -8,7 +8,7 @@
         <el-button color="#C20C0C" size="small" type="danger" @click="getHotPalyList">热门</el-button>
       </template>
     </SectionHeader>
-    <MusicItem :list="playList?.playlists" :total="5">
+    <MusicItem :list="playList?.playlists" :total="5" :imgUrlField="'coverImgUrl'">
       <template v-slot="{item}">
         <div class="title">{{item.name}}</div>
         <div class="creator">

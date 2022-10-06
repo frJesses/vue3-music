@@ -2,7 +2,7 @@
   <div>
     <Banner/>
     <div class="recm-wrapper wrapper">
-      <RecmModule class="recm-left">
+      <RecmModule class="recm-left" v-if="PersonList?.length">
           <template #nav>
             <RecmNav
             :title="title.title"
@@ -12,7 +12,7 @@
             ></RecmNav>
           </template>
           <template #content>
-            <MusicItem :list="PersonList" :total="4" :num="8"></MusicItem>
+            <MusicItem :list="PersonList?.slice(0, 8)" :total="4"></MusicItem>
           </template>
       </RecmModule>
       <RecmModule>
