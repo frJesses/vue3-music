@@ -2,7 +2,7 @@
   <div>
     <Banner/>
     <div class="recm-wrapper wrapper">
-      <RecmModule class="recm-left">
+      <RecmModule class="recm-left" v-if="PersonList?.length">
           <template #nav>
             <RecmNav
             :title="title.title"
@@ -12,7 +12,7 @@
             ></RecmNav>
           </template>
           <template #content>
-            <MusicItem :list="PersonList" :total="4" :num="8"></MusicItem>
+            <MusicItem :list="PersonList?.slice(0, 8)" :total="4"></MusicItem>
           </template>
       </RecmModule>
       <RecmModule>
@@ -22,6 +22,9 @@
             path ="/discover/album"
             more ="/discover/album"
             ></RecmNav>
+          </template>
+          <template #content>
+            <NewCd></NewCd>
           </template>
       </RecmModule>
       <div class="recm-right"></div>
@@ -34,6 +37,7 @@ import Banner from './components/Banner'
 import RecmModule from './components/RecmModule'
 import MusicItem from '@/components/MusicItem'
 import RecmNav from './components/RecmNav.vue'
+import NewCd from './components/NewCd'
 import { getPersonalized } from '@/servies/Personalized'
 import { onMounted, ref } from '@vue/runtime-core'
 const PersonList = ref(null)

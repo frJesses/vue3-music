@@ -8,7 +8,7 @@
         <el-button color="#C20C0C" size="small" type="danger" @click="getHotPalyList">热门</el-button>
       </template>
     </SectionHeader>
-    <MusicItem :list="playList?.playlists" :total="5">
+    <MusicItem :list="playList?.playlists" :total="5" :imgUrlField="'coverImgUrl'">
       <template v-slot="{item}">
         <div class="title">{{item.name}}</div>
         <div class="creator">
@@ -42,7 +42,7 @@ function getPlayListArray(...args) {
 // 点击热门按钮触发
 const getHotPalyList = () => {
   const cat = route.query.cat || '全部'
-  getPlayList('hot', cat)
+  getPlayListArray('hot', cat)
   let url = `/discover/playlist/?cat=${route.query.cat}&order=hot`
   if (!route.query.cat) url = `/discover/playlist/?order=hot`
   router.push(url)
