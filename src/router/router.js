@@ -29,7 +29,10 @@ const routes = [
       { // 主播电台界面
         path: 'djradio',
         name: 'anchorStation',
-        component: () => import('@/views/AmchorStation')
+        component: () => import('@/views/AnchorStation'),
+        children: [
+          { path: 'category', name: 'anchorStationCategory', component: () => import('@/views/AnchorStation/components/category') }
+        ]
       }
     ]
   },

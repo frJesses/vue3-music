@@ -42,7 +42,7 @@ function getPlayListArray(...args) {
 // 点击热门按钮触发
 const getHotPalyList = () => {
   const cat = route.query.cat || '全部'
-  getPlayList('hot', cat)
+  getPlayListArray('hot', cat)
   let url = `/discover/playlist/?cat=${route.query.cat}&order=hot`
   if (!route.query.cat) url = `/discover/playlist/?order=hot`
   router.push(url)

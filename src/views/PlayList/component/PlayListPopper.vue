@@ -49,7 +49,9 @@ const tagClick = (tagName) => {
   // 发送请求改变数据
   props.getPlayList('hot', tagName)
   // 改变路由地址
-  router.push(`/discover/playlist/?cat=${tagName}`)
+  let url = `/discover/playlist/?cat=${tagName}`
+  if (route.query.order) url = `/discover/playlist/?cat=${tagName}&order=${route.query.order}`
+  router.push(url)
 }
 
 // poppver显示触发
