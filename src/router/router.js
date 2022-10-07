@@ -31,8 +31,16 @@ const routes = [
         name: 'anchorStation',
         component: () => import('@/views/AnchorStation'),
         children: [
-          { path: 'category', name: 'anchorStationCategory', component: () => import('@/views/AnchorStation/components/category') }
+          { path: '', name: 'anchorStationHome', component: () => import('@/views/AnchorStation/components/home') },
+          { path: 'category', name: 'anchorStationCategory', component: () => import('@/views/AnchorStation/components/category') },
+          { path: 'recommend', name: 'anchorStationRecommend', component: () => import('@/views/AnchorStation/components/recommend') },
+          { path: 'rank', name: 'anchorStationRank', component: () => import('@/views/AnchorStation/components/rank') }
         ]
+      },
+      { // 歌手界面
+        path: 'artist',
+        name: 'artist',
+        component: () => import('@/views/Singer')
       }
     ]
   },

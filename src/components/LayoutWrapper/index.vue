@@ -38,7 +38,7 @@ defineProps({
   },
   showPlayIcon: { // 是否展示播放图标
     type: Boolean,
-    default: false
+    default: true
   }
 })
 </script>
@@ -53,11 +53,30 @@ defineProps({
     align-items: center;
     width: calc(100% / v-bind(lineCount));
     padding: 10px 0;
+    &:hover {
+      .cover > .play {
+        opacity: 1;
+      }
+    }
 
     .cover {
       margin-right: 10px;
       cursor: pointer;
       position: relative;
+      .play {
+        font-size: 24px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        color: #ccc;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity ease .3s;
+        &:hover {
+          opacity: 1;
+          color: #fff;
+        }
+      }
     }
 
     .info {
