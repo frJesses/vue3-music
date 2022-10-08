@@ -3,18 +3,23 @@
     <div class="item" v-for="(item, index) in list" :key="item.id">
       <slot :item="item" name="sort" :index="index"></slot>
       <div class="cover">
-        <img :src="item[imgUrlField]" :style="{width: imgWidth + 'px', height: imgWidth + 'px'}" alt="" />
-        <el-icon v-if="showPlayIcon" class="play"><VideoPlay /></el-icon>
+        <img v-lazy="item[imgUrlField]" :style="{width: imgWidth + 'px', height: imgWidth + 'px'}" alt="" @click="imgClick(item)" />
+        <el-icon v-if="showPlayIcon" class="play">
+          <VideoPlay />
+        </el-icon>
       </div>
       <div class="info">
         <slot :item="item" name="info"></slot>
       </div>
-      <div class="tag"><slot :item="item" name="tag"></slot></div>
+      <div class="tag">
+        <slot :item="item" name="tag"></slot>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
+const emits = defineEmits(['imgClick'])
 defineProps({
   list: { // 列表数据
     type: Array,
@@ -41,6 +46,10 @@ defineProps({
     default: true
   }
 })
+// 点击图片发送事件，父元素监听事件
+function imgClick(id) {
+  emits('imgClick', id)
+}
 </script>
 
 <style lang="less" scoped>
@@ -53,8 +62,9 @@ defineProps({
     align-items: center;
     width: calc(100% / v-bind(lineCount));
     padding: 10px 0;
+
     &:hover {
-      .cover > .play {
+      .cover>.play {
         opacity: 1;
       }
     }
@@ -63,6 +73,7 @@ defineProps({
       margin-right: 10px;
       cursor: pointer;
       position: relative;
+
       .play {
         font-size: 24px;
         position: absolute;
@@ -72,6 +83,7 @@ defineProps({
         transform: translate(-50%, -50%);
         opacity: 0;
         transition: opacity ease .3s;
+
         &:hover {
           opacity: 1;
           color: #fff;
@@ -87,6 +99,7 @@ defineProps({
       flex: 1;
       padding-right: 10px;
     }
+
     .tag {
       width: v-bind(tagWidth);
     }

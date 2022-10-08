@@ -1,18 +1,21 @@
 import { defineStore } from 'pinia'
-import { getRadioRecommend, getRadioRankData } from '@/servies/AnchorStation'
+import { getRadioRecommend, getRadioRankData, getRadioTypeData, getRadioRankList } from '@/servies/AnchorStation'
 export default defineStore('station', {
   state: () => {
     return {
       radioRecommendList: [],
-      radioRankList: []
+      radioRankList: [],
+      goodRadio: []
     }
   },
   getters: {},
   actions: {
+    // 获取推荐列表
     async getStationRecommend() {
       const { programs } = await getRadioRecommend()
       this.radioRecommendList = programs
     },
+    // 获取节目排行列表
     getStationRank() {
       getRadioRankData().then(res => {
         res.toplist.map(item => {
@@ -20,6 +23,19 @@ export default defineStore('station', {
           return item
         })
         this.radioRankList = res.toplist
+      })
+    },
+    // 获取分类中优秀电台列表
+    getRadioCategoryList(id) {
+      getRadioTypeData(id).then(res => {
+        this.goodRadio = res.djRadios.slice(0, 5)
+      })
+    },
+    // 获取电台排行榜数据
+    getRadioRankList() {
+      console.log(...arguments, '...arguments')
+      getRadioRankList(...arguments).then(res => {
+        console.log(res, 'res')
       })
     }
   },

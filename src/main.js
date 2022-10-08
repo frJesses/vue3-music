@@ -17,6 +17,9 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 
+// 使用图片懒加载
+import VueLazyload from 'vue-lazyload'
+
 const app = createApp(App)
 // 全局注册ElementUI的ICON
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
@@ -36,6 +39,10 @@ app.config.globalProperties.$filters = {
 
 app.use(router)
 app.use(pinia)
+app.use(VueLazyload, {
+  error: require('./assets/image/default.jpg'),
+  loading: require('./assets/image/default.jpg')
+})
 app.use(ElementPlus)
 app.mount('#app')
 app.config.globalProperties.$http = Axios

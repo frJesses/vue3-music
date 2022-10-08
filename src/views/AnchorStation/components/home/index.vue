@@ -1,8 +1,8 @@
 <template>
   <div class="station-list wrapper">
     <div class="left">
-      <SeationHeader :title="'推荐节目'" :showDetailInfo="showMoreInfo('recommend')"></SeationHeader>
-      <LayoutWrapper :list="station.radioRecommendList.slice(0, 10)" :tagWidth="'80px'" class="layout-wrapper">
+      <SeationHeader :title="'推荐节目'" @showDetailInfo="showMoreInfo('recommend')" @showMore="showMoreInfo('recommend')"></SeationHeader>
+      <LayoutWrapper :list="station.radioRecommendList?.slice(0, 10)" :tagWidth="'80px'" class="layout-wrapper">
         <template v-slot:info="{item}">
           <router-link class="name" :to="`/program?id=${item.id}`">{{item.name}}</router-link>
           <router-link class="source" :to="`/djradio?id=${item.radio.id}`">{{item.dj.brand}}</router-link>
@@ -14,11 +14,12 @@
       </LayoutWrapper>
     </div>
     <div class="right">
-      <SeationHeader :title="'节目排行榜'" :showDetailInfo="showMoreInfo('rank')"></SeationHeader>
-      <LayoutWrapper :list="station.radioRankList.slice(0, 10)" class="layout-wrapper">
+      <SeationHeader :title="'节目排行榜'" @showDetailInfo="showMoreInfo('rank')" @showMore="showMoreInfo('rank')"></SeationHeader>
+      <LayoutWrapper :list="station.radioRankList?.slice(0, 10)" class="layout-wrapper">
         <template v-slot:info="{item}">
           <router-link class="name" :to="`/program?id=${item.program.id}`">{{item.program.name}}</router-link>
-          <router-link class="source" :to="`/djradio?id=${item.program.radio.id}`">{{item.program.radio.name}}</router-link>
+          <router-link class="source" :to="`/djradio?id=${item.program.radio.id}`">{{item.program.radio.name}}
+          </router-link>
         </template>
         <template v-slot:sort="{item, index}">
           <SortItem :index="index" :diff="(item.lastRank - item.rank)" class="layout-sort"></SortItem>
@@ -28,8 +29,9 @@
   </div>
   <div class="station-category wrapper">
     <template v-for="item in radioTypeData" :key="item.title">
-      <SeationHeader :title="item.title + ' · 电台'" :showDetailInfo="showMoreInfo(item.type)"></SeationHeader>
-      <LayoutWrapper :list="item.data" :imgWidth="120" :lineCount="2" :imgUrlField="'picUrl'" :showPlayIcon="false" class="layout-category">
+      <SeationHeader :title="item.title + ' · 电台'" @showDetailInfo="showMoreInfo(item.type)" @showMore="showMoreInfo(item.type)"></SeationHeader>
+      <LayoutWrapper @imgClick="imgClick" :list="item.data" :imgWidth="120" :lineCount="2" :imgUrlField="'picUrl'"
+        :showPlayIcon="false" class="layout-category">
         <template v-slot:info="{item}">
           <router-link class="name" :to="`/djradio?id=${item.id}`">{{item.name}}</router-link>
           <span class="source">{{item.rcmdtext}}</span>
@@ -78,17 +80,18 @@ onMounted(() => {
 })
 // 点击标题展示更多
 function showMoreInfo(flag) {
-  return function() {
-    if (flag === 'recommend') {
-      router.push('/discover/djradio/recommend')
-    } else if (flag === 'rank') {
-      router.push('/discover/djradio/rank')
-    } else {
-      router.push(`/discover/djradio/category?id=${flag}`)
-    }
+  if (flag === 'recommend') {
+    router.push('/discover/djradio/recommend')
+  } else if (flag === 'rank') {
+    router.push('/discover/djradio/rank')
+  } else {
+    router.push(`/discover/djradio/category?id=${flag}`)
   }
 }
-console.log(station.radioRankList, 'station')
+// 点击图片跳转
+function imgClick(items) {
+  router.push(`/discover/djradio/category?id=${items.categoryId}`)
+}
 </script>
 
 <style lang="less" scoped>

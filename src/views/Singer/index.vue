@@ -9,7 +9,7 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
-import { getSingerCategoryList, getHotSinger, getSingerNavList } from '@/servies/singer'
+import { getSingerCategoryList, getHotSinger, getSingerNavList } from '@/servies/Singer'
 const singerNav = ref([])
 onMounted(() => {
   getSingerCategoryList().then(res => {

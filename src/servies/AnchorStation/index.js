@@ -19,3 +19,8 @@ export function getRadioRankData() {
 export function getRadioTypeData(type = 2) {
   return HyRequest.get({ url: '/dj/recommend/type', params: { type: type }})
 }
+
+// 获取电台排行榜数据
+export function getRadioRankList(type, limit = 100, offset = 0) {
+  return HyRequest.get({ url: '/dj/program/toplist', params: { type, limit, offset }})
+}
