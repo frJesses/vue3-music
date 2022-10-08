@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { getBannerList } from '@/servies/Banner'
+import { getBannerList } from '@/servies/Home/index'
 // import { getPersonalized } from '@/servies/Test'
 import { onMounted, ref } from '@vue/runtime-core'
 const BannerList = ref(null)
@@ -37,6 +37,7 @@ function changeBg(val) {
  margin: 0 auto;
  img {
    height: 100%;
+   width: 730px;
  }
 }
 

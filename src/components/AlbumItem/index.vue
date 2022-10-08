@@ -11,7 +11,7 @@
 <script setup>
 const albumPath = '/album?id='
 const artistPath = '/artist?id='
-const props = defineProps({
+defineProps({
   // 专辑id
   albumId: {
     type: Number
@@ -33,7 +33,7 @@ const props = defineProps({
     type: String
   }
 })
-console.log(props)
+// console.log(props)
 </script>
 
 <style lang="less" scoped>

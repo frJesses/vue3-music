@@ -31,7 +31,7 @@ import 'swiper/less/navigation'
 import 'swiper/less/pagination'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation } from 'swiper'
-import { getNewCd } from '@/servies/NewCd/index'
+import { getNewCd } from '@/servies/Home/index'
 const { onMounted, ref } = require('@vue/runtime-core')
 const modules = [Navigation]
 // cd轮播一屏显示的数量
@@ -40,7 +40,7 @@ const lists = ref(null)
 onMounted(async() => {
   const res = (await getNewCd()).albums
   lists.value = res
-  console.log(res)
+  // console.log(res)
 })
 const onSwiper = (swiper) => {
   console.log(swiper)
@@ -54,7 +54,6 @@ const onSlideChange = () => {
 .cd_banner{
   padding: 20px;
   background-color: #F5F5F5;
-  margin-top: 20px;
   border: 1px solid #d3d3d3;
   .swiper{
     overflow:hidden;
