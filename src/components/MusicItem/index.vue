@@ -41,6 +41,10 @@ defineProps({
   imgUrlField: { // 图片字段
     type: String,
     default: 'picUrl'
+  },
+  imgVisible: { // 是否显示图片
+    type: Boolean,
+    default: true
   }
 })
 // 图片点击事件

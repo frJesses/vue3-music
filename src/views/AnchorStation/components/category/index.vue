@@ -14,9 +14,29 @@
         <a class="order" @click="radioRank(0)" :class="{'active': order == 0}">最热电台</a>
       </template>
     </SeactionHeader>
-    <LayoutWrapper>
-
+    <LayoutWrapper
+      :list="station.rankList.djRadios"
+      :imgUrlField="'picUrl'"
+      :imgWidth="120"
+      :lineCount="2"
+      :showPlayIcon="false"
+      @imgClick="imgClick"
+      class="category-layout"
+    >
+      <template v-slot:info="{item}">
+        <h3 class="title"><router-link :to="`/djradio?id=${item.id}`">{{item.name}}</router-link></h3>
+        <div class="user">
+          <el-icon class="user-icon"><User /></el-icon>
+          <router-link :to="`/user/home?id=${item.dj.userId}`" class="nick-name">{{item.dj.nickname}}</router-link>
+          <img :src="item.dj.avatarDetail?.identityIcon" alt="">
+        </div>
+        <div class="count">
+          <span class="count-total">共{{item.programCount}}期</span>
+          <span class="count-total">订阅{{item.subCount}}次</span>
+        </div>
+      </template>
     </LayoutWrapper>
+    <Pagination :total="station.rankList.count" :pageSize="22" @currentPageChange="currentPageChange"/>
   </div>
 </template>
 
@@ -24,6 +44,7 @@
 import SeactionHeader from '@/components/SectionHeader'
 import MusicItem from '@/components/MusicItem'
 import LayoutWrapper from '@/components/LayoutWrapper'
+import Pagination from '@/components/Pagination'
 import { useRouterInfo } from '@/hooks/useRouterInfo'
 import useStore from '@/store'
 import { ref } from 'vue'
@@ -40,9 +61,17 @@ function radioRank(type) {
   order.value = type
   router.push(`/discover/djradio/category?id=${id}&order=${type}`)
 }
+// 分页
+function currentPageChange(index) {
+  const limit = 20
+  const offset = (index - 1) * limit
+  station.getRadioRankList(route.query.id, limit, offset)
+  document.documentElement.scrollTop = 700
+}
 </script>
 
 <style lang="less" scoped>
+@import "@/assets/css/common.less";
   .radio-category {
     .category-header {
       :deep(.title) {
@@ -69,6 +98,38 @@ function radioRank(type) {
     }
     .rcmd-text {
       color: #999;
+    }
+    .category-layout {
+      justify-content: space-between;
+      margin-bottom: 15px;
+      :deep(.item) {
+        width: 49%;
+        border-bottom: 1px solid #e7e7e7;
+        padding: 20px 0;
+      }
+      .title {
+        font-size: 18px;
+        .text-ellipies(1);
+        .hover-underline;
+      }
+      .user {
+        display: flex;
+        align-items: center;
+        .user-icon {
+          font-size: 18px;
+          color: #999;
+        }
+        .nick-name {
+          margin-left: 10px;
+          .hover-underline;
+        }
+      }
+      .count {
+        color: #999;
+        .count-total {
+          margin-right: 10px;
+        }
+      }
     }
   }
 </style>

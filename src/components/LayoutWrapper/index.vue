@@ -47,8 +47,8 @@ defineProps({
   }
 })
 // 点击图片发送事件，父元素监听事件
-function imgClick(id) {
-  emits('imgClick', id)
+function imgClick(item) {
+  emits('imgClick', item)
 }
 </script>
 

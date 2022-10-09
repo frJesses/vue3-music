@@ -5,7 +5,8 @@ export default defineStore('station', {
     return {
       radioRecommendList: [],
       radioRankList: [],
-      goodRadio: []
+      goodRadio: [],
+      rankList: {}
     }
   },
   getters: {},
@@ -33,9 +34,9 @@ export default defineStore('station', {
     },
     // 获取电台排行榜数据
     getRadioRankList() {
-      console.log(...arguments, '...arguments')
       getRadioRankList(...arguments).then(res => {
-        console.log(res, 'res')
+        this.rankList = res
+        console.log(res)
       })
     }
   },

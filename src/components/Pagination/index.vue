@@ -12,14 +12,11 @@
 </template>
 
 <script setup>
+const emit = defineEmits(['currentPageChange'])
 defineProps({
   total: {
     type: Number,
     default: 0
-  },
-  currentPageChange: {
-    type: Function,
-    default: () => { }
   },
   prevText: {
     type: String,
@@ -34,6 +31,9 @@ defineProps({
     default: 50
   }
 })
+function currentPageChange(index) {
+  emit('currentPageChange', index)
+}
 </script>
 
 <style lang="less">

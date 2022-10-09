@@ -17,10 +17,10 @@ export function getRadioRankData() {
 
 // 获取推荐类型的数据(2-音乐推荐 6-生活 3-情感 2001-创作翻唱 11-知识)
 export function getRadioTypeData(type = 2) {
-  return HyRequest.get({ url: '/dj/recommend/type', params: { type: type }})
+  return HyRequest.get({ url: '/dj/recommend/type', params: { type }})
 }
 
 // 获取电台排行榜数据
-export function getRadioRankList(type, limit = 100, offset = 0) {
-  return HyRequest.get({ url: '/dj/program/toplist', params: { type, limit, offset }})
+export function getRadioRankList(cateId, limit = 20, offset = 0) {
+  return HyRequest.get({ url: '/dj/radio/hot', params: { cateId, limit, offset }})
 }

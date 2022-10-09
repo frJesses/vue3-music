@@ -30,7 +30,7 @@ watch(route, (newVal) => {
     // 发送请求获取优秀电台
     station.getRadioCategoryList(newVal.query.id)
     // 发送请求获取电台排行榜数据
-    station.getRadioRankList('hot')
+    station.getRadioRankList(newVal.query.id)
   }
 }, {
   immediate: true,
