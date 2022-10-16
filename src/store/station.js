@@ -36,7 +36,6 @@ export default defineStore('station', {
     getRadioRankList() {
       getRadioRankList(...arguments).then(res => {
         this.rankList = res
-        console.log(res)
       })
     }
   },

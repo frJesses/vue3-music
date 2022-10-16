@@ -2,7 +2,7 @@
   <div class="station-list wrapper">
     <div class="left">
       <SeationHeader :title="'推荐节目'" @showDetailInfo="showMoreInfo('recommend')" @showMore="showMoreInfo('recommend')"></SeationHeader>
-      <LayoutWrapper :list="station.radioRecommendList?.slice(0, 10)" :tagWidth="'80px'" class="layout-wrapper">
+      <LayoutWrapper :list="stationStore.radioRecommendList?.slice(0, 10)" :tagWidth="'80px'" class="layout-wrapper">
         <template v-slot:info="{item}">
           <router-link class="name" :to="`/program?id=${item.id}`">{{item.name}}</router-link>
           <router-link class="source" :to="`/djradio?id=${item.radio.id}`">{{item.dj.brand}}</router-link>
@@ -15,7 +15,7 @@
     </div>
     <div class="right">
       <SeationHeader :title="'节目排行榜'" @showDetailInfo="showMoreInfo('rank')" @showMore="showMoreInfo('rank')"></SeationHeader>
-      <LayoutWrapper :list="station.radioRankList?.slice(0, 10)" class="layout-wrapper">
+      <LayoutWrapper :list="stationStore.radioRankList?.slice(0, 10)" class="layout-wrapper">
         <template v-slot:info="{item}">
           <router-link class="name" :to="`/program?id=${item.program.id}`">{{item.program.name}}</router-link>
           <router-link class="source" :to="`/djradio?id=${item.program.radio.id}`">{{item.program.radio.name}}
@@ -48,8 +48,8 @@ import SortItem from '@/components/SortItem'
 import { onMounted, ref, reactive } from 'vue'
 import { getRadioTypeData } from '@/servies/AnchorStation'
 import { useRouterInfo } from '@/hooks/useRouterInfo'
-import useStore from '@/store'
-const { station } = useStore()
+import useStation from '@/store/station'
+const stationStore = useStation()
 const { router } = useRouterInfo()
 // const radioRankList = ref([])
 const radioTypeData = ref([])
@@ -63,9 +63,9 @@ const typeArr = reactive([
 ])
 onMounted(() => {
   // 获取推荐节目
-  station.getStationRecommend()
+  stationStore.getStationRecommend()
   // 获取节目排行榜数据
-  station.getStationRank()
+  stationStore.getStationRank()
   // 获取推荐类型的数据(2-音乐推荐 6-生活 3-情感 2001-创作翻唱 11-知识)
   typeArr.forEach(item => {
     getRadioTypeData(item.type).then(res => {

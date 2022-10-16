@@ -12,10 +12,7 @@ import './assets/css/index.less'
 import router from './router'
 
 // 引入pinia
-import { createPinia } from 'pinia'
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-const pinia = createPinia()
-pinia.use(piniaPluginPersistedstate)
+import pinia from './store'
 
 // 使用图片懒加载
 import VueLazyload from 'vue-lazyload'

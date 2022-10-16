@@ -2,8 +2,8 @@
 import { getRadioType } from '@/servies/AnchorStation'
 import { onMounted, ref, watch } from 'vue'
 import { useRouterInfo } from '@/hooks/useRouterInfo'
-import useStore from '@/store'
-const { station } = useStore()
+import useStation from '@/store/station'
+const stationStore = useStation()
 const { route } = useRouterInfo()
 
 const currentIndex = ref(null)
@@ -28,9 +28,9 @@ watch(route, (newVal) => {
   isShow.value = !/(recommend|rank)/.test(newVal.path)
   if (newVal.query.id) {
     // 发送请求获取优秀电台
-    station.getRadioCategoryList(newVal.query.id)
+    stationStore.getRadioCategoryList(newVal.query.id)
     // 发送请求获取电台排行榜数据
-    station.getRadioRankList(newVal.query.id)
+    stationStore.getRadioRankList(newVal.query.id)
   }
 }, {
   immediate: true,

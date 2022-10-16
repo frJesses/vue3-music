@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper radio-category">
     <SeactionHeader :title="'优秀新电台'" :more="''" class="category-header"/>
-    <MusicItem :list="station.goodRadio" :total="5" :maskVisible="false" @imgClick="imgClick">
+    <MusicItem :list="stationStore.goodRadio" :total="5" :maskVisible="false" @imgClick="imgClick">
       <template v-slot="{item}">
         <router-link class="title" :to="`/djradio?id=${item.id}`">{{item.name}}</router-link>
         <div class="rcmd-text">{{item.rcmdtext}}</div>
@@ -15,7 +15,7 @@
       </template>
     </SeactionHeader>
     <LayoutWrapper
-      :list="station.rankList.djRadios"
+      :list="stationStore.rankList.djRadios"
       :imgUrlField="'picUrl'"
       :imgWidth="120"
       :lineCount="2"
@@ -36,7 +36,7 @@
         </div>
       </template>
     </LayoutWrapper>
-    <Pagination :total="station.rankList.count" :pageSize="22" @currentPageChange="currentPageChange"/>
+    <Pagination :total="stationStore.rankList.count" :pageSize="22" @currentPageChange="currentPageChange"/>
   </div>
 </template>
 
@@ -46,9 +46,9 @@ import MusicItem from '@/components/MusicItem'
 import LayoutWrapper from '@/components/LayoutWrapper'
 import Pagination from '@/components/Pagination'
 import { useRouterInfo } from '@/hooks/useRouterInfo'
-import useStore from '@/store'
 import { ref } from 'vue'
-const { station } = useStore()
+import useStation from '@/store/station'
+const stationStore = useStation()
 const { router, route } = useRouterInfo()
 const order = ref(route.query.order || 1)
 // 优秀电台图片点击事件
@@ -65,7 +65,7 @@ function radioRank(type) {
 function currentPageChange(index) {
   const limit = 20
   const offset = (index - 1) * limit
-  station.getRadioRankList(route.query.id, limit, offset)
+  stationStore.getRadioRankList(route.query.id, limit, offset)
   document.documentElement.scrollTop = 700
 }
 </script>
