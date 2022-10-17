@@ -1,12 +1,13 @@
 import HyRequest from '../index'
 
 // 获取歌手分类
-export function getSingerCategoryList(type = -1, area = -1, limit = 100) {
+export function getSingerCategoryList(type = -1, area = -1, initial = -1, limit = 100) {
   return HyRequest.get({
     url: '/artist/list',
     params: {
       type,
       area,
+      initial,
       limit
     }
   })

@@ -1,6 +1,6 @@
 <template>
   <div class="music-list">
-    <div class="item" v-for="item in list" :key="item">
+    <div class="item" v-for="(item, index) in list" :key="item">
       <div class="cover">
         <div class="bg" v-if="maskVisible"></div>
         <img v-lazy="item[imgUrlField]" alt="" @click="imgClick(item)" />
@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="info">
-        <slot :item="item">
+        <slot :item="item" :index="index">
           <div class="title">{{item.name}}</div>
         </slot>
       </div>
