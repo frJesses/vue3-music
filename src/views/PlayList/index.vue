@@ -17,7 +17,7 @@
         </div>
       </template>
     </MusicItem>
-    <Pagintion :total="playList?.total" :currentPageChange="pageChange" />
+    <Pagintion :total="playList?.total" @currentPageChange="pageChange" />
   </div>
 </template>
 

@@ -12,6 +12,7 @@ ul {
 }
 html {
   overflow-y: scroll;
+  font-size: 12px;
 }
 .wrapper {
   width: 980px;

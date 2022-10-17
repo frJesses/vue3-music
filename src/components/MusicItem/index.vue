@@ -1,9 +1,9 @@
 <template>
-  <div class="music-list" v-if="list?.length">
-    <div class="item" v-for="item in list" :key="item">
+  <div class="music-list">
+    <div class="item" v-for="(item, index) in list" :key="item">
       <div class="cover">
         <div class="bg" v-if="maskVisible"></div>
-        <img :src="item[imgUrlField]" alt="">
+        <img v-lazy="item[imgUrlField]" alt="" @click="imgClick(item)" />
         <div class="mask" v-if="maskVisible">
           <el-icon class="listen">
             <Service />
@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="info">
-        <slot :item="item">
+        <slot :item="item" :index="index">
           <div class="title">{{item.name}}</div>
         </slot>
       </div>
@@ -24,6 +24,7 @@
 </template>
 
 <script setup>
+const emits = defineEmits(['imgClick'])
 defineProps({
   list: { // 数据列表
     type: Array,
@@ -40,8 +41,16 @@ defineProps({
   imgUrlField: { // 图片字段
     type: String,
     default: 'picUrl'
+  },
+  imgVisible: { // 是否显示图片
+    type: Boolean,
+    default: true
   }
 })
+// 图片点击事件
+function imgClick(item) {
+  emits('imgClick', item)
+}
 </script>
 
 <style lang="less" scoped>
@@ -95,6 +104,7 @@ defineProps({
             color: #fff;
           }
         }
+
         .listen {
           font-size: 14px;
         }

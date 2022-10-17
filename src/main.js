@@ -12,7 +12,10 @@ import './assets/css/index.less'
 import router from './router'
 
 // 引入pinia
-import { createPinia } from 'pinia'
+import pinia from './store'
+
+// 使用图片懒加载
+import VueLazyload from 'vue-lazyload'
 
 const app = createApp(App)
 // 全局注册ElementUI的ICON
@@ -32,7 +35,11 @@ app.config.globalProperties.$filters = {
 }
 
 app.use(router)
-app.use(createPinia())
+app.use(pinia)
+app.use(VueLazyload, {
+  error: require('./assets/image/default.jpg'),
+  loading: require('./assets/image/default.jpg')
+})
 app.use(ElementPlus)
 app.mount('#app')
 app.config.globalProperties.$http = Axios

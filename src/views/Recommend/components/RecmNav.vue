@@ -5,7 +5,7 @@
         <router-link :to="item.path" v-for="item in navs" :key="item">{{item.title}}</router-link>
       </div>
       <span class="more">
-        <router-link :to="more">更多<el-icon color="#C10D0C"><CaretRight /></el-icon></router-link>
+        <router-link :to="path">更多<el-icon color="#C10D0C"><CaretRight /></el-icon></router-link>
       </span>
     </div>
 </template>
@@ -22,9 +22,6 @@ defineProps({
   navs: {
     type: Array,
     default: () => []
-  },
-  more: {
-    type: String
   }
 })
 </script>

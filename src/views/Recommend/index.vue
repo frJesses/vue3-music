@@ -20,14 +20,28 @@
             <RecmNav
             title="新碟上架"
             path ="/discover/album"
-            more ="/discover/album"
             ></RecmNav>
           </template>
           <template #content>
             <NewCd></NewCd>
           </template>
       </RecmModule>
-      <div class="recm-right"></div>
+      <RecmModule class="lists">
+          <template #nav>
+            <RecmNav
+            title="榜单"
+            path ="/discover/toplist"
+            ></RecmNav>
+          </template>
+          <template #content >
+            <RecmList :id="19723756"></RecmList>
+            <RecmList :id="3779629"></RecmList>
+            <RecmList :id="2884035"></RecmList>
+          </template>
+      </RecmModule>
+      <div class="recm-right">
+        <RecmAside title="入驻歌手" more="/discover/artist/signed"></RecmAside>
+      </div>
     </div>
   </div>
 </template>
@@ -38,12 +52,16 @@ import RecmModule from './components/RecmModule'
 import MusicItem from '@/components/MusicItem'
 import RecmNav from './components/RecmNav.vue'
 import NewCd from './components/NewCd'
+import RecmAside from './components/RecmAside.vue'
+import RecmList from './components/RecmList.vue'
 import { getPersonalized } from '@/servies/Personalized'
 import { onMounted, ref } from '@vue/runtime-core'
 const PersonList = ref(null)
 onMounted(async() => {
   const res = (await getPersonalized()).result
   PersonList.value = res
+  // const lists = (await getList())
+  // console.log(lists)
 })
 const title = {
   path: '/discover/playlist',
@@ -69,6 +87,7 @@ const more = '/discover/playlist'
     position: absolute;
     right: 0;
     top: 0;
+    border-left: 1px solid #d3d3d3;
   }
 }
 </style>

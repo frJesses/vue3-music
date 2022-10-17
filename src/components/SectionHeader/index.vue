@@ -7,7 +7,7 @@
     </div>
     <div class="header-right">
       <slot name="right">
-        <span v-if="more" class="more" @click="showDetailInfo">{{more}}<el-icon>
+        <span v-if="more" class="more" @click="showMore">{{more}}<el-icon>
             <ArrowRight />
           </el-icon></span>
       </slot>
@@ -16,6 +16,7 @@
 </template>
 
 <script setup>
+const emits = defineEmits(['showDetailInfo', 'showMore'])
 defineProps({
   title: {
     type: String,
@@ -24,12 +25,16 @@ defineProps({
   more: {
     type: String,
     default: '更多'
-  },
-  showDetailInfo: {
-    type: Function,
-    default: () => { }
   }
 })
+// 点击标题
+function showDetailInfo() {
+  emits('showDetailInfo')
+}
+// 点击更多字样
+function showMore() {
+  emits('showMore')
+}
 </script>
 
 <style lang="less" scoped>
